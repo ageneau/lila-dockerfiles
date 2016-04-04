@@ -1,19 +1,19 @@
 version: '2'
 services:
-  web:
-    build: lila
+  lila:
+    build: lila-server
     links:
      - db1
     volumes:
-     - ..:/lila
+     - ./lila:/lila
      - ivy-data:/root/.ivy2
     ports:
      - "9663:9663"
-  opening_explorer:
-    build: opening_explorer
+  explorer:
+    build: explorer
     volumes:
-     - opening-explorer-data:/root/.ivy2
-     - opening-explorer-code:/lila
+     - ./lila/lila:/lila
+     - ivy-data:/root/.ivy2
     ports:
      - "9000:9000"
   db1:
@@ -26,7 +26,7 @@ services:
     build: nginx
     links:
      - db1
-     - web
+     - lila
     volumes:
      - ..:/home/user/lila
     extra_hosts:
@@ -41,8 +41,4 @@ volumes:
   mongo-data:
     driver: local
   ivy-data:
-    driver: local
-  opening-explorer-data:
-    driver: local
-  opening-explorer-code:
     driver: local

@@ -9,7 +9,7 @@ server {
   charset utf-8;
 
   location /assets {
-    alias   /home/user/lila/public;
+    alias   /lila/public;
   }
 
   location / {
@@ -29,10 +29,10 @@ server {
   error_page 504  /oops/timeout.html;
   error_page 429  /oops/toomanyrequests.html;
   location /oops/ {
-    root  /home/user/lila/public/;
+    root  /lila/public/;
   }
   location = /robots.txt {
-    root  /home/user/lila/public/;
+    root  /lila/public/;
   }
 
 }
