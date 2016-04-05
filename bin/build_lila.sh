@@ -52,7 +52,7 @@ build_explorer() {
     RUN="docker-compose run explorer"
     $RUN ./bin/build-deps.sh
     $RUN sbt compile
-    cp lila/explorer/conf/application.conf.example lila/explorer/conf/application.conf
+    cp explorer/application.conf lila/explorer/conf/application.conf
     info 'Building lila explorer done'
 }
 
