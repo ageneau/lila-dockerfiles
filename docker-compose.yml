@@ -12,7 +12,7 @@ services:
   explorer:
     build: explorer
     volumes:
-     - ./lila/lila:/lila
+     - ./lila:/lila
      - ivy-data:/root/.ivy2
     ports:
      - "9000:9000"
@@ -25,18 +25,16 @@ services:
   nginx:
     build: nginx
     links:
-     - db1
      - lila
     volumes:
-     - ..:/home/user/lila
+     - ./lila/lila:/home/user/lila
     extra_hosts:
      - l.org en.l.org de.l.org le.l.org fr.l.org es.l.org l1.org socket.en.l.org socket.le.l.org socket.fr.l.org ru.l.org el.l.org hu.l.org socket.hu.l.org:127.0.0.1
     ports:
      - "80:80"
   fishnet:
     image: ageneau/fishnet
-    links:
-     - nginx
+    command: [--endpoint, "http://en.l.org/fishnet/"]
 volumes:
   mongo-data:
     driver: local

@@ -4,6 +4,11 @@ info() {
     echo "INFO: $*"
 }
 
+check_requirements() {
+    command -v docker >/dev/null 2>&1 || { echo '"docker" not found"'; exit 1; }
+    command -v docker-compose >/dev/null 2>&1 || { echo '"docker-compose" not found"'; exit 1; }
+}
+
 clone_sources() {
     test -d lila || mkdir lila
     if ! test -d lila/lila; then
@@ -18,7 +23,17 @@ clone_sources() {
     fi
 }
 
+create_containers() {
+    info 'Pulling the latest version of containers from dockerhub'
+    docker-compose pull ageneau/fishnet
+    docker-compose pull ageneau/scala-base
+    info 'Building containers'
+    docker-compose build
+    info 'Done building containers'
+}
+
 build_lila() {
+    info 'Building lila'
     RUN="docker-compose run lila"
     $RUN ./bin/build-deps.sh
     $RUN sbt compile
@@ -27,17 +42,24 @@ build_lila() {
     $RUN ./bin/gen/geoip
     $RUN ./bin/svg-optimize
     cp lila-server/application.conf lila/lila/conf/
+    cp lila/lila/bin/dev.default lila/lila/bin/dev
+    chmod +x lila/lila/bin/dev
+    info 'Building lila done'
 }
 
 build_explorer() {
+    info 'Building lila explorer'
     RUN="docker-compose run explorer"
     $RUN ./bin/build-deps.sh
     $RUN sbt compile
     cp lila/explorer/conf/application.conf.example lila/explorer/conf/application.conf
+    info 'Building lila explorer done'
 }
 
 main() {
+    check_requirements
     clone_sources
+    create_containers
     build_lila
     build_explorer
 
@@ -49,5 +71,4 @@ main() {
     info 'Then run "docker-compose run lila" and visit  http://en.l.org on your host machine.'
 }
 
-# main
-clone_sources
+main
