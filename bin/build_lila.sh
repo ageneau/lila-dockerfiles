@@ -70,6 +70,7 @@ main() {
     info
     info 'docker-compose up -d'
     info 'ssh -l root -p 2222 localhost'
+    info '(password is lila)'
     info 'cd /lila/lila'
     info 'sbt'
     info
