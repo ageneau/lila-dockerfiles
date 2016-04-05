@@ -68,7 +68,15 @@ main() {
     info
     info '    127.0.0.1 l.org en.l.org de.l.org le.l.org fr.l.org es.l.org l1.org socket.en.l.org socket.le.l.org socket.fr.l.org ru.l.org el.l.org hu.l.org socket.hu.l.org'
     info
-    info 'Then run "docker-compose run lila" and visit  http://en.l.org on your host machine.'
+    info 'docker-compose up -d'
+    info 'ssh -l root -p 2222 localhost'
+    info 'cd /lila/lila'
+    info 'sbt'
+    info
+    info 'when sbt finishes loading, type:'
+    info 'run -Dhttp.port=9663'
+    info
+    info 'Open your host browser at: http://en.l.org/'
 }
 
 main

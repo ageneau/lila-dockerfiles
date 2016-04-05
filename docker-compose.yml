@@ -9,12 +9,14 @@ services:
      - ivy-data:/root/.ivy2
     ports:
      - "9663:9663"
+     - "2222:22"
   explorer:
     build: explorer
     volumes:
      - ./lila:/lila
      - ivy-data:/root/.ivy2
     ports:
+     - "2223:22"
      - "9000:9000"
   db1:
     image: mongo:3.2
@@ -27,14 +29,14 @@ services:
     links:
      - lila
     volumes:
-     - ./lila/lila:/home/user/lila
+     - ./lila/lila:/lila
     extra_hosts:
      - l.org en.l.org de.l.org le.l.org fr.l.org es.l.org l1.org socket.en.l.org socket.le.l.org socket.fr.l.org ru.l.org el.l.org hu.l.org socket.hu.l.org:127.0.0.1
     ports:
      - "80:80"
   fishnet:
     image: ageneau/fishnet
-    command: [--endpoint, "http://en.l.org/fishnet/"]
+    command: [--endpoint, "http://en.lichess.org/fishnet/", --key, "INVALID_KEY" ]
 volumes:
   mongo-data:
     driver: local
