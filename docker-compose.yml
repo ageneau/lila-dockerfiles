@@ -36,7 +36,9 @@ services:
      - "80:80"
   fishnet:
     image: ageneau/fishnet
-    command: [--endpoint, "http://en.lichess.org/fishnet/", --key, "INVALID_KEY" ]
+    command: [--key, foo, --endpoint, "http://nginx/fishnet"]
+    links:
+     - nginx
 volumes:
   mongo-data:
     driver: local
