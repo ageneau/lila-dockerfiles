@@ -25,8 +25,8 @@ clone_sources() {
 
 create_containers() {
     info 'Pulling the latest version of containers from dockerhub'
-    docker-compose pull ageneau/fishnet
-    docker-compose pull ageneau/scala-base
+    docker pull ageneau/fishnet
+    docker pull ageneau/scala-base
     info 'Building containers'
     docker-compose build
     info 'Done building containers'
