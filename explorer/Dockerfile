@@ -11,6 +11,7 @@ RUN curl http://fallabs.com/kyotocabinet/javapkg/kyotocabinet-java-1.24.tar.gz |
 WORKDIR /project/kyotocabinet-java-1.24
 RUN ./configure
 RUN make all install
+WORKDIR /project
 RUN rm -rf /project/kyotocabinet-java-1.24
 
 RUN apt-get install -y openssh-server
@@ -25,4 +26,5 @@ ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
 EXPOSE 22 9000
+WORKDIR /lila/explorer
 CMD ["/usr/sbin/sshd", "-D"]
