@@ -31,7 +31,7 @@ services:
     volumes:
      - ./lila/lila:/lila
     extra_hosts:
-     - l.org en.l.org de.l.org le.l.org fr.l.org es.l.org l1.org socket.en.l.org socket.le.l.org socket.fr.l.org ru.l.org el.l.org hu.l.org socket.hu.l.org:127.0.0.1
+     - l.org socket.l.org en.l.org de.l.org le.l.org fr.l.org es.l.org l1.org socket.en.l.org socket.le.l.org socket.fr.l.org ru.l.org el.l.org hu.l.org socket.hu.l.org:127.0.0.1
     ports:
      - "80:80"
   fishnet:

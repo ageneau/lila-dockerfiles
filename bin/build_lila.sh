@@ -66,7 +66,7 @@ main() {
     info 'Lila is all set up! Add this entry to your hosts file on your'
     info 'host machine'
     info
-    info '    127.0.0.1 l.org en.l.org de.l.org le.l.org fr.l.org es.l.org l1.org socket.en.l.org socket.le.l.org socket.fr.l.org ru.l.org el.l.org hu.l.org socket.hu.l.org'
+    info '    127.0.0.1 l.org socket.l.org en.l.org de.l.org le.l.org fr.l.org es.l.org l1.org socket.en.l.org socket.le.l.org socket.fr.l.org ru.l.org el.l.org hu.l.org socket.hu.l.org'
     info
     info 'docker-compose up -d'
     info 'ssh -l root -p 2222 localhost'
