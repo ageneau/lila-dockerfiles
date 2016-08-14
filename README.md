@@ -11,9 +11,11 @@ docker (>=1.10) and docker-compose (>= 1.6, needs to support version 2 of docker
 ## Running ##
 
 docker-compose up -d
-ssh -l root -p 2222 localhost
-(password is lila)
+
+ssh -l root -p 2222 localhost # (password is lila)
+
 cd /lila/lila
+
 sbt
 
 when sbt finishes loading, type:
