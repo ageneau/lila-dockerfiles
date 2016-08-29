@@ -6,7 +6,7 @@ WORKDIR /lila/lila
 
 ENV JAVA_OPTS="-Xms64M -Xmx3072M -Xss4M -XX:ReservedCodeCacheSize=64m -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC"
 
-RUN apt-get install -y openssh-server
+RUN apt-get update && apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
 RUN echo 'root:lila' | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config

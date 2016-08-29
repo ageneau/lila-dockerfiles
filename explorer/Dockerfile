@@ -2,7 +2,7 @@ FROM ageneau/scala-base:latest
 
 MAINTAINER Sylvain Ageneau <ageneau@gmail.com>
 
-RUN apt-get install -y --no-install-recommends libkyotocabinet-dev kyotocabinet-utils
+RUN apt-get update && apt-get install -y --no-install-recommends libkyotocabinet-dev kyotocabinet-utils
 RUN apt-get clean && apt-get autoclean
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
