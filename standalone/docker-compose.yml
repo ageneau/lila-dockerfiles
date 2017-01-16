@@ -1,0 +1,35 @@
+version: '2'
+services:
+  nginx:
+    build: ./nginx
+    volumes:
+     - ../lila/lila:/lila
+    extra_hosts:
+     - l.org socket.l.org en.l.org de.l.org le.l.org fr.l.org es.l.org l1.org socket.en.l.org socket.le.l.org socket.fr.l.org ru.l.org el.l.org hu.l.org socket.hu.l.org:127.0.0.1
+    network_mode: "host"
+    ports:
+     - "80:80"
+  explorer:
+    build: ../explorer
+    volumes:
+     - ../lila:/lila
+     - ivy-data:/root/.ivy2
+    network_mode: "host"
+    ports:
+     - "2223:22"
+     - "9000:9000"
+  db1:
+    image: mongo:3.2
+    ports:
+     - "27017:27017"
+    volumes:
+     - mongo-data:/data/db
+  fishnet:
+    image: ageneau/fishnet
+    command: [--key, foo, --endpoint, "http://localhost/fishnet"]
+    network_mode: "host"
+volumes:
+  mongo-data:
+    driver: local
+  ivy-data:
+    driver: local
