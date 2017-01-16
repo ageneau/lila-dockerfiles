@@ -14,7 +14,7 @@ RUN make all install
 WORKDIR /project
 RUN rm -rf /project/kyotocabinet-java-1.24
 
-RUN apt-get install -y openssh-server
+RUN apt-get update -qq && apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
 RUN echo 'root:lila' | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
